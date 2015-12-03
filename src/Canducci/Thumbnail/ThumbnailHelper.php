@@ -1,7 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Fulvio
- * Date: 03/12/2015
- * Time: 16:14
- */
+
+if (!function_exists('thumbnail'))
+{
+
+    function thumbnail($url)
+    {
+
+        return new Canducci\Thumbnail\Thumbnail($url);
+
+    }
+
+}
