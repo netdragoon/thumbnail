@@ -1,10 +1,16 @@
 <?php namespace Canducci\Thumbnail;
 
-class Thumbnail {
+use Canducci\Thumbnail\Contracts\ThumbnailContract;
 
-    protected $url;
-    public function __construct($url)
+class Thumbnail extends ThumbnailContract
+{
+
+    public function __construct($url = null)
     {
-        $this->url = $url;
+        if (!is_null($url))
+        {
+            $this->setUrl($url);
+        }
     }
+
 }
