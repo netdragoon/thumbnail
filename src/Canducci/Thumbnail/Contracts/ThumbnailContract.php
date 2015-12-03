@@ -1,6 +1,7 @@
 <?php namespace Canducci\Thumbnail\Contracts;
 
 use Exception;
+use Canducci\Thumbnail\ThumbnailUrl;
 
 abstract class ThumbnailContract
 {
@@ -29,7 +30,31 @@ abstract class ThumbnailContract
             throw new Exception("Url invalid.", 0);
         }
     }
-    public function renderCode()
+    protected  function renderThumbnailPicture($id)
+    {
+        return sprintf(ThumbnailUrl::URLDefault, $this->code, $id);
+    }
+    protected function renderThumbnailVideoShare()
+    {
+        return sprintf(ThumbnailUrl::URLShare, $this->code);
+    }
+    protected  function renderThumbnailTagVideoEmbed($width = 560, $height = 315, $frameborder = 0, $suggestvideo = true, $controls = true, $showinfo = true, $privacidade = false)
+    {
+        $url = $privacidade ? ThumbnailUrl::URLEmbedPrivacidade : ThumbnailUrl::URLEmbed;
+        $conf = $suggestvideo === false ? "rel=0" : "";
+        if ($conf !=="" && !$controls) $conf += "&amp;";
+        $conf += !$controls ? "controls=0" : "";
+        if ($conf !=="" && !$showinfo) $conf += "&amp;";
+        $conf += !$showinfo ? "showinfo=0" : "";
+        if ($conf !=="") $conf = "?" + $conf;
+
+        $embed = sprintf('<iframe width="%s" height="%s" ', $width, $height);
+        $embed .= sprintf('src="%s%s" ', sprintf($url, $this->code), $conf);
+        $embed .= sprintf('frameborder="%s" allowfullscreen></iframe>', $frameborder);
+        return $embed;
+
+    }
+    protected function renderCode()
     {
         $parseUrl = parse_url($this->url);
         $response = array();
