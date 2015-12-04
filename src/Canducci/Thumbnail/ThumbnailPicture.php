@@ -27,7 +27,7 @@ class ThumbnailPicture
     public function toArray()
     {
 
-        return array('id' => $this->id, 'url' => $this->url);
+        return array('id' => $this->id, 'url' => $this->url, 'code' => $this->code);
 
     }
     public function toJson()
@@ -40,16 +40,16 @@ class ThumbnailPicture
     public function saveAs($path)
     {
 
-        return ThumbnailClient::saveImage($this->url, $path, $this->id, $this->code);
+        return ThumbnailUtils::saveImage($this->url, $path, $this->id, $this->code);
 
     }
 
-    public function getWebPath($path)
+    public function getWebFile($path)
     {
 
         $this->saveAs($path);
 
-        return sprintf("%s%s-%s%s", $path, $this->code, $this->id, ".jpg");
+        return ThumbnailUtils::webPath("/".$path, $this->id, $this->code);
 
     }
 }

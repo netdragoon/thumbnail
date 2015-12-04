@@ -1,12 +1,12 @@
 <?php namespace Canducci\Thumbnail;
 
-abstract class ThumbnailClient
+abstract class ThumbnailUtils
 {
 
     public static function saveImage($url, $path, $id, $code)
     {
 
-        $filename = sprintf("%s%s-%s%s", $path, $code, $id, ".jpg");
+        $filename = self::webPath($path, $id, $code);
 
         if (!file_exists($filename))
         {
@@ -30,6 +30,13 @@ abstract class ThumbnailClient
         }
 
         return false;
+
+    }
+
+    public static function webPath($path, $id, $code)
+    {
+
+        return sprintf("%s%s-%s%s", $path, $code, $id, ".jpg");
 
     }
 
