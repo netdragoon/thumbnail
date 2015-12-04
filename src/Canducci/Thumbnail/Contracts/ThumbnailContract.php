@@ -56,7 +56,7 @@ abstract class ThumbnailContract
             {
                 if (is_null($this->pictureDefault))
                 {
-                    $this->pictureDefault = new ThumbnailPicture($url, $id);
+                    $this->pictureDefault = new ThumbnailPicture($url, $id, $this->code);
                 }
                 $thumbPictureInstance = $this->pictureDefault;
                 break;
@@ -65,7 +65,7 @@ abstract class ThumbnailContract
             {
                 if (is_null($this->picture0))
                 {
-                    $this->picture0 = new ThumbnailPicture($url, $id);
+                    $this->picture0 = new ThumbnailPicture($url, $id, $this->code);
                 }
                 $thumbPictureInstance = $this->picture0;
                 break;
@@ -74,7 +74,7 @@ abstract class ThumbnailContract
             {
                 if (is_null($this->picture1))
                 {
-                    $this->picture1 = new ThumbnailPicture($url, $id);
+                    $this->picture1 = new ThumbnailPicture($url, $id, $this->code);
                 }
                 $thumbPictureInstance = $this->picture1;
                 break;
@@ -83,7 +83,7 @@ abstract class ThumbnailContract
             {
                 if (is_null($this->picture2))
                 {
-                    $this->picture2 = new ThumbnailPicture($url, $id);
+                    $this->picture2 = new ThumbnailPicture($url, $id, $this->code);
                 }
                 $thumbPictureInstance = $this->picture2;
                 break;
@@ -92,7 +92,7 @@ abstract class ThumbnailContract
             {
                 if (is_null($this->picture3))
                 {
-                    $this->picture3 = new ThumbnailPicture($url, $id);
+                    $this->picture3 = new ThumbnailPicture($url, $id, $this->code);
                 }
                 $thumbPictureInstance = $this->picture3;
                 break;
@@ -101,7 +101,7 @@ abstract class ThumbnailContract
             {
                 if (is_null($this->pictureStandard))
                 {
-                    $this->pictureStandard = new ThumbnailPicture($url, $id);
+                    $this->pictureStandard = new ThumbnailPicture($url, $id, $this->code);
                 }
                 $thumbPictureInstance = $this->pictureStandard;
                 break;
@@ -110,7 +110,7 @@ abstract class ThumbnailContract
             {
                 if (is_null($this->pictureMediumQuality))
                 {
-                    $this->pictureMediumQuality = new ThumbnailPicture($url, $id);
+                    $this->pictureMediumQuality = new ThumbnailPicture($url, $id, $this->code);
                 }
                 $thumbPictureInstance = $this->pictureMediumQuality;
                 break;
@@ -119,7 +119,7 @@ abstract class ThumbnailContract
             {
                 if (is_null($this->pictureHighQuality))
                 {
-                    $this->pictureHighQuality = new ThumbnailPicture($url, $id);
+                    $this->pictureHighQuality = new ThumbnailPicture($url, $id, $this->code);
                 }
                 $thumbPictureInstance = $this->pictureHighQuality;
                 break;
@@ -128,7 +128,7 @@ abstract class ThumbnailContract
             {
                 if (is_null($this->pictureMaximumResolution))
                 {
-                    $this->pictureMaximumResolution = new ThumbnailPicture($url, $id);
+                    $this->pictureMaximumResolution = new ThumbnailPicture($url, $id, $this->code);
                 }
                 $thumbPictureInstance = $this->pictureMaximumResolution;
                 break;

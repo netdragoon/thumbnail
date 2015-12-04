@@ -4,12 +4,16 @@ class ThumbnailPicture
 {
     private $url;
     private $id;
+    private $code;
 
-    function __construct($url, $id)
+    public function __construct($url,$id,$code)
     {
 
         $this->url = $url;
+
         $this->id = $id;
+
+        $this->code = $code;
 
     }
 
@@ -36,7 +40,16 @@ class ThumbnailPicture
     public function saveAs($path)
     {
 
+        return ThumbnailClient::saveImage($this->url, $path, $this->id, $this->code);
 
     }
 
+    public function getWebPath($path)
+    {
+
+        $this->saveAs($path);
+
+        return sprintf("%s%s-%s%s", $path, $this->code, $this->id, ".jpg");
+
+    }
 }
