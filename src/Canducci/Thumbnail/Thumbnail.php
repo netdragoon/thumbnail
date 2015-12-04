@@ -25,9 +25,12 @@ class Thumbnail extends ThumbnailContract
 
     public function setUrl($url)
     {
-        $this->validation($url);
+        ThumbnailValidation::isURL($url);
+
         $this->url = $url;
+
         $this->renderCode();
+
         return $this;
     }
 

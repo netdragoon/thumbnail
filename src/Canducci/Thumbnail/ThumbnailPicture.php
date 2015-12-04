@@ -1,13 +1,18 @@
 <?php namespace Canducci\Thumbnail;
 
-class ThumbnailPicture
+use Canducci\Thumbnail\Contracts\ThumbnailPictureContract;
+use Exception;
+
+class ThumbnailPicture extends ThumbnailPictureContract
 {
-    private $url;
-    private $id;
-    private $code;
+    protected $url;
+    protected $id;
+    protected $code;
 
     public function __construct($url,$id,$code)
     {
+
+        ThumbnailValidation::isURL($url);
 
         $this->url = $url;
 
@@ -40,16 +45,28 @@ class ThumbnailPicture
     public function saveAs($path)
     {
 
-        return ThumbnailUtils::saveImage($this->url, $path, $this->id, $this->code);
+        return ThumbnailClient::save($this->url, $path, $this->id, $this->code);
 
     }
 
-    public function getWebFile($path)
+    public function exitsFileWeb($path)
     {
 
-        $this->saveAs($path);
+        return file_exists($this->getPath($path));
 
-        return ThumbnailUtils::webPath("/".$path, $this->id, $this->code);
+    }
+
+    public function getFileWeb($path)
+    {
+
+        if (!$this->exitsFileWeb($path))
+        {
+
+            throw new Exception('No found file, saveAs');
+
+        }
+
+        return sprintf('/%s', $this->getPath($path));
 
     }
 }

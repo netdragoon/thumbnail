@@ -1,8 +1,8 @@
 <?php namespace Canducci\Thumbnail\Contracts;
 
 use Canducci\Thumbnail\ThumbnailPicture;
-use Exception;
 use Canducci\Thumbnail\ThumbnailUrl;
+use Exception;
 
 abstract class ThumbnailContract
 {
@@ -20,7 +20,6 @@ abstract class ThumbnailContract
     protected $pictureHighQuality = null;
     protected $pictureMaximumResolution = null;
 
-
     abstract public function getUrl();
     abstract public function getCode();
     abstract public function setUrl($url);
@@ -35,16 +34,11 @@ abstract class ThumbnailContract
     abstract public function getPictureMaximumResolution();
     abstract public function getUrlVideoShare();
     abstract public function getTagVideoEmbed($width = 560, $height = 315, $frameborder = 0, $suggestvideo = true, $controls = true, $showinfo = true, $privacidade = false);
+
     abstract public function toArray();
     abstract public function toJson();
 
-    protected function validation($url)
-    {
-        if (!filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED))
-        {
-            throw new Exception("Url invalid.", 0);
-        }
-    }
+
 
     protected  function renderThumbnailPicture($id)
     {
