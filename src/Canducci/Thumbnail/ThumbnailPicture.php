@@ -42,7 +42,7 @@ class ThumbnailPicture extends ThumbnailPictureContract
 
     }
 
-    public function saveAs($path)
+    public function save($path)
     {
 
         return ThumbnailClient::save($this->url, $path, $this->id, $this->code);

@@ -4,7 +4,7 @@ abstract class ThumbnailPictureContract
 {
 
     abstract public function getUrl();
-    abstract public function saveAs($path);
+    abstract public function save($path);
     abstract public function getFileWeb($path);
 
     abstract public function toArray();

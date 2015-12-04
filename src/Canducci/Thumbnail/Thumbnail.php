@@ -15,16 +15,21 @@ class Thumbnail extends ThumbnailContract
 
     public function getUrl()
     {
+
         return $this->url;
+
     }
 
     public function getCode()
     {
+
         return $this->code;
+
     }
 
     public function setUrl($url)
     {
+
         ThumbnailValidation::isURL($url);
 
         $this->url = $url;
@@ -32,6 +37,7 @@ class Thumbnail extends ThumbnailContract
         $this->renderCode();
 
         return $this;
+
     }
 
     public function getPictureDefault()
@@ -143,4 +149,35 @@ class Thumbnail extends ThumbnailContract
 
     }
 
+    public function savePictures($path)
+    {
+
+        foreach($this->getPictures() as $pic)
+        {
+
+            $pic->save($path);
+
+        }
+
+    }
+
+    public function getPictures()
+    {
+        if (is_null($this->pictures))
+        {
+            $this->pictures = array(
+                $this->getPictureDefault(),
+                $this->getPicture0(),
+                $this->getPicture1(),
+                $this->getPicture2(),
+                $this->getPicture3(),
+                $this->getPictureStandard(),
+                $this->getPictureHighQuality(),
+                $this->getPictureHighQuality(),
+                $this->getPictureMaximumResolution()
+            );
+        }
+
+        return $this->pictures;
+    }
 }

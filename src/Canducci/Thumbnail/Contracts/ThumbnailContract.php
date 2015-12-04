@@ -9,6 +9,7 @@ abstract class ThumbnailContract
 
     protected $url;
     protected $code;
+    protected $pictures;
 
     protected $pictureDefault = null;
     protected $picture0 = null;
@@ -38,7 +39,8 @@ abstract class ThumbnailContract
     abstract public function toArray();
     abstract public function toJson();
 
-
+    abstract public function savePictures($path);
+    abstract public function getPictures();
 
     protected  function renderThumbnailPicture($id)
     {
