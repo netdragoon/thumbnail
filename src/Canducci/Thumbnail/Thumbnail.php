@@ -13,38 +13,84 @@ class Thumbnail extends ThumbnailContract
         }
     }
 
-    public function getUrlPictureDefault()
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    public function setUrl($url)
+    {
+        $this->validation($url);
+        $this->url = $url;
+        $this->renderCode();
+        return $this;
+    }
+
+    public function getPictureDefault()
     {
 
         return $this->renderThumbnailPicture('default');
 
     }
 
-    public function getUrlPicture0()
+    public function getPicture0()
     {
 
         return $this->renderThumbnailPicture('0');
 
     }
 
-    public function getUrlPicture1()
+    public function getPicture1()
     {
 
         return $this->renderThumbnailPicture('1');
 
     }
 
-    public function getUrlPicture2()
+    public function getPicture2()
     {
 
         return $this->renderThumbnailPicture('2');
 
     }
 
-    public function getUrlPicture3()
+    public function getPicture3()
     {
 
         return $this->renderThumbnailPicture('3');
+
+    }
+
+    public function getPictureStandard()
+    {
+
+        return $this->renderThumbnailPicture('sddefault');
+
+    }
+
+    public function getPictureMediumQuality()
+    {
+
+        return $this->renderThumbnailPicture('mqdefault');
+
+    }
+
+    public function getPictureHighQuality()
+    {
+
+        return $this->renderThumbnailPicture('hqdefault');
+
+    }
+
+    public function getPictureMaximumResolution()
+    {
+
+        return $this->renderThumbnailPicture('maxresdefault');
 
     }
 
@@ -59,6 +105,38 @@ class Thumbnail extends ThumbnailContract
     {
 
         return $this->renderThumbnailTagVideoEmbed($width, $height, $frameborder, $suggestvideo, $controls, $showinfo, $privacidade);
+
+    }
+
+    public function toArray()
+    {
+
+        return array(
+            'code' => $this->code,
+            'url' => $this->url,
+            'pictures' => array(
+                'thumbnails' => array(
+                    $this->getPictureDefault()->toArray(),
+                    $this->getPicture0()->toArray(),
+                    $this->getPicture1()->toArray(),
+                    $this->getPicture2()->toArray(),
+                    $this->getPicture3()->toArray()
+                ),
+                'standard' => $this->getPictureStandard()->toArray(),
+                'medium' => $this->getPictureHighQuality()->toArray(),
+                'high' => $this->getPictureHighQuality()->toArray(),
+                'maximum' => $this->getPictureMaximumResolution()->toArray()
+            ),
+            'embed' => array('tag' => $this->getTagVideoEmbed()),
+            'share' => array('url' => $this->getUrlVideoShare())
+        );
+
+    }
+
+    public function toJson()
+    {
+
+        return json_encode($this->toArray(), JSON_PRETTY_PRINT);
 
     }
 
