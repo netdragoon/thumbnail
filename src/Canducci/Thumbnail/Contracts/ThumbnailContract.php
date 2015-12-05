@@ -190,24 +190,32 @@ abstract class ThumbnailContract
 
     protected function renderInformationVideo()
     {
-        //url_encoded_fmt_stream_map
-        //adaptive_fmts
-
         if (is_null($this->informationVideo))
         {
 
             $information = ThumbnailClient::get(sprintf(ThumbnailUrl::URLInfo, $this->code));
 
         }
+
         $info = array();
-        return html_entity_decode($information);
+
+        /*parse_str($information, $info);
+        foreach($info as $key => $value)
+        {
+            echo '<p>'.$key.' - '.$value.'</p>';
+        }
+        return;*/
 
         parse_str($information, $info);
-        //return $info['author'];
         $this->informationVideo['author'] = $info['author'];
         $this->informationVideo['title'] = $info['title'];
-        $this->informationVideo['length_seconds'] = $info['length_seconds'];
-        $this->informationVideo['view_count']  = $info['view_count'];
+        $this->informationVideo['video_id'] = $info['video_id'];
+        $this->informationVideo['host_language '] = $info['host_language'];
+        $this->informationVideo['keywords'] = $info['keywords'];
+        $this->informationVideo['timestamp'] = (int)$info['timestamp'];
+        $this->informationVideo['length_seconds'] = (int)$info['length_seconds'];
+        $this->informationVideo['view_count']  = (int)$info['view_count'];
+        $this->informationVideo['thumbnail'] = $this->getPictures()->toArray();
         $this->infoVideo($info, 'adaptive_fmts');
         $this->infoVideo($info, 'url_encoded_fmt_stream_map');
         return $this->informationVideo;
