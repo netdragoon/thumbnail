@@ -137,3 +137,25 @@ $thumb = thumbnail('address_video_youtube');
 $thumb->getPicture0()->save('thumbs/');
 
 ```
+
+___Note: only inform the folder name , the names are generated automatically and are also redeemed automatically .___
+
+```PHP
+$thumb = thumbnail('address_video_youtube');
+
+$pathWeb = $thumb->getPicture0()->getFileWeb('thumbs/');
+
+//result '/thumbs/xtzxYWz0D_9-0.jpg';
+
+```
+
+###If you prefer you can use the http (without optimization, but functional) to display the thumbnail :
+
+```PHP
+$thumb = thumbnail('address_video_youtube');
+
+$pathWeb = $thumb->getPicture0()->getUrl();
+
+//result 'http://i1.ytimg.com/vi/xtzxYWz0D_9/0.jpg';
+```
+
