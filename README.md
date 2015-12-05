@@ -174,7 +174,7 @@ abstract public function getPictureMaximumResolution();
 
 ```
 
-###These methods are represented by class `ThumbnailPicture`:
+__These methods are represented by class__ `ThumbnailPicture`:
 
 ```PHP
 abstract public function getUrl();
