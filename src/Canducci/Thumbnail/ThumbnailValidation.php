@@ -1,5 +1,7 @@
 <?php namespace Canducci\Thumbnail;
 
+use Exception;
+
 abstract class ThumbnailValidation
 {
 
