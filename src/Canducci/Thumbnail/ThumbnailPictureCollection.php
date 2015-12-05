@@ -1,9 +1,8 @@
 <?php namespace Canducci\Thumbnail;
 
-use \Iterator;
-use \Countable;
+use Canducci\Thumbnail\Contracts\IThumbnailPictureCollection;
 
-class ThumbnailPictureCollection implements Iterator, Countable
+class ThumbnailPictureCollection implements IThumbnailPictureCollection
 {
 
     protected $items = array();
@@ -11,50 +10,71 @@ class ThumbnailPictureCollection implements Iterator, Countable
 
     public function __construct($array)
     {
+
         $this->items = $array;
+
     }
 
     public function current()
     {
+
         return $this->items[$this->index];
+
     }
 
     public function next()
     {
+
         ++$this->index;
+
     }
 
     public function key()
     {
+
         return $this->index;
+
     }
 
     public function valid()
     {
+
         return ($this->index < $this->count());
+
     }
 
     public function rewind()
     {
+
         $this->index = 0;
+
     }
 
     public function count()
     {
+
         return count($this->items);
+
     }
 
     public function toArray()
     {
+
         $arr = array();
+
         foreach($this->items as $itt)
         {
             $arr[] = $itt->toArray();
         }
+
         return $arr;
+
     }
     public function toJson()
     {
+
         return json_encode($this->toArray(), JSON_PRETTY_PRINT);
+
     }
+
 }
