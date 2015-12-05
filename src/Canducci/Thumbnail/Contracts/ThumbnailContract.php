@@ -1,8 +1,11 @@
 <?php namespace Canducci\Thumbnail\Contracts;
 
+use Canducci\Thumbnail\ThumbnailAdaptiveFmts;
 use Canducci\Thumbnail\ThumbnailClient;
+use Canducci\Thumbnail\ThumbnailInformation;
 use Canducci\Thumbnail\ThumbnailPicture;
 use Canducci\Thumbnail\ThumbnailUrl;
+use Canducci\Thumbnail\ThumbnailUrlEncodedFmtStreamMap;
 use Exception;
 
 abstract class ThumbnailContract
@@ -192,6 +195,7 @@ abstract class ThumbnailContract
     {
         if (is_null($this->informationVideo))
         {
+            $obj = new ThumbnailInformation();
 
             $information = ThumbnailClient::get(sprintf(ThumbnailUrl::URLInfo, $this->code));
 
@@ -199,18 +203,47 @@ abstract class ThumbnailContract
 
             parse_str($information, $info);
 
-            $this->informationVideo['author'] = $info['author'];
-            $this->informationVideo['title'] = $info['title'];
-            $this->informationVideo['video_id'] = $info['video_id'];
-            $this->informationVideo['host_language '] = $info['host_language'];
-            $this->informationVideo['keywords'] = $info['keywords'];
-            $this->informationVideo['timestamp'] = (int)$info['timestamp'];
-            $this->informationVideo['length_seconds'] = (int)$info['length_seconds'];
-            $this->informationVideo['view_count']  = (int)$info['view_count'];
-            $this->informationVideo['thumbnail'] = $this->getPictures()->toArray();
-            $this->infoVideo($info, 'adaptive_fmts');
-            $this->infoVideo($info, 'url_encoded_fmt_stream_map');
-
+            $obj->setAuthor($info['author']);
+            $obj->setTitle($info['title']);
+            $obj->setVideoId($info['video_id']);
+            $obj->setHostLanguage($info['host_language']);
+            $obj->setKeywords($info['keywords']);
+            $obj->setTimestamp((int)$info['timestamp']);
+            $obj->setLengthSeconds((int)$info['length_seconds']);
+            $obj->setViewCount((int)$info['view_count']);
+            $obj->setThumbnail($this->getPictures());
+            $fmts = array();
+            foreach($this->infoVideo($info, 'adaptive_fmts') as $value)
+            {
+                $fmtsObject = new ThumbnailAdaptiveFmts();
+                $fmtsObject->setUrl($value['url']);
+                $fmtsObject->setBitrate($value['bitrate']);
+                $fmtsObject->setClen($value['clen']);
+                $fmtsObject->setFps(isset($value['fps']) ? $value['fps']: 0);
+                $fmtsObject->setIndex($value['index']);
+                $fmtsObject->setInit($value['init']);
+                $fmtsObject->setItag($value['itag']);
+                $fmtsObject->setLmt($value['lmt']);
+                $fmtsObject->setProjectionType($value['projection_type']);
+                $fmtsObject->setQualityLabel(isset($value['quality_label']) ? $value['quality_label']:0);
+                $fmtsObject->setSize(isset($value['size']) ? $value['size']:0);
+                $fmtsObject->setType($value['type']);
+                $fmts[] = $fmtsObject;
+            }
+            $obj->setAdaptiveFmts($fmts);
+            $map = array();
+            foreach($this->infoVideo($info, 'url_encoded_fmt_stream_map') as $value)
+            {
+                $mapObject = new ThumbnailUrlEncodedFmtStreamMap();
+                $mapObject->setType($value['type']);
+                $mapObject->setUrl($value['url']);
+                $mapObject->setItag($value['itag']);
+                $mapObject->setFallbackHost($value['fallback_host']);
+                $mapObject->setQuality($value['quality']);
+                $map[] = $mapObject;
+            }
+            $obj->setUrlEncodedFmtStreamMap($map);
+            $this->informationVideo = $obj;
         }
 
         return $this->informationVideo;
@@ -235,7 +268,7 @@ abstract class ThumbnailContract
             $i++;
         }
 
-        $this->informationVideo[$key] = $ret;
+        return $ret;
 
     }
 }
