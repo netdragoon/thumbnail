@@ -252,6 +252,7 @@ Route::get('thumb3', function()
 #####2 - Save all thumbnail
 
 ```PHP
+use Canducci\Thumbnail\Thumbnail as Thumb;
 Route::get('thumb4', function()
 {	
 	$thumb = new Thumb('address_video_youtube');
@@ -259,9 +260,12 @@ Route::get('thumb4', function()
 	echo $thumb->getPicture0()->getFileWeb('t/');
 });
 ```
+__Note:__ `t/` is folder.
 
 ___Video Share and Embed___
+
 ```PHP
+use Canducci\Thumbnail\Thumbnail as Thumb;
 Route::get('thumb5', function()
 {	
 	$thumb = new Thumb('address_video_youtube');
