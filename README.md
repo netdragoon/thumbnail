@@ -192,5 +192,6 @@ abstract public function getUrlVideoShare(); // return link share
 
 //embed
 abstract public function getTagVideoEmbed($width = 560, $height = 315,  
-  $frameborder = 0, $suggestvideo = true, $controls = true, $showinfo = true, $privacidade = false); //return tag frame
+  $frameborder = 0, $suggestvideo = true, $controls = true, $showinfo = true, 
+  $privacidade = false); //return tag frame
 ```
