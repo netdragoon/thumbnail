@@ -1,5 +1,6 @@
 <?php namespace Canducci\Thumbnail\Contracts;
 
+use Canducci\Thumbnail\ThumbnailClient;
 use Canducci\Thumbnail\ThumbnailPicture;
 use Canducci\Thumbnail\ThumbnailUrl;
 use Exception;
@@ -20,6 +21,7 @@ abstract class ThumbnailContract
     protected $pictureMediumQuality = null;
     protected $pictureHighQuality = null;
     protected $pictureMaximumResolution = null;
+    protected $informationVideo = null;
 
     abstract public function getUrl();
     abstract public function getCode();
@@ -35,6 +37,7 @@ abstract class ThumbnailContract
     abstract public function getPictureMaximumResolution();
     abstract public function getUrlVideoShare();
     abstract public function getTagVideoEmbed($width = 560, $height = 315, $frameborder = 0, $suggestvideo = true, $controls = true, $showinfo = true, $privacidade = false);
+    abstract public function getInformationVideo();
 
     abstract public function toArray();
     abstract public function toJson();
@@ -182,6 +185,54 @@ abstract class ThumbnailContract
         }
 
         throw new Exception("Url invalid", 0);
+
+    }
+
+    protected function renderInformationVideo()
+    {
+        //url_encoded_fmt_stream_map
+        //adaptive_fmts
+
+        if (is_null($this->informationVideo))
+        {
+
+            $information = ThumbnailClient::get(sprintf(ThumbnailUrl::URLInfo, $this->code));
+
+        }
+        $info = array();
+        return html_entity_decode($information);
+
+        parse_str($information, $info);
+        //return $info['author'];
+        $this->informationVideo['author'] = $info['author'];
+        $this->informationVideo['title'] = $info['title'];
+        $this->informationVideo['length_seconds'] = $info['length_seconds'];
+        $this->informationVideo['view_count']  = $info['view_count'];
+        $this->infoVideo($info, 'adaptive_fmts');
+        $this->infoVideo($info, 'url_encoded_fmt_stream_map');
+        return $this->informationVideo;
+
+    }
+
+    protected function infoVideo(array $array, $key)
+    {
+
+        $i = 0;
+
+        $datas = explode(",", $array[$key]);
+
+        foreach($datas as $data)
+        {
+            $g = explode('&', $data);
+            foreach($g as $a)
+            {
+                $c = explode("=", $a);
+                $ret[$i][$c[0]] = $c[1];
+            }
+            $i++;
+        }
+
+        $this->informationVideo[$key] = $ret;
 
     }
 }

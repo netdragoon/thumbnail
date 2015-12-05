@@ -190,4 +190,10 @@ class Thumbnail extends ThumbnailContract
 
     }
 
+    public function getInformationVideo()
+    {
+
+        return $this->renderInformationVideo();
+
+    }
 }
