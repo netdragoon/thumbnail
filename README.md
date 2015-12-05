@@ -52,6 +52,18 @@ To use is very simple, pass the ZIP and calls the various types of returns, like
 
 __Package ZipCode__
 
+##Simply Instance
+__Add namespace:__
+
+```PHP
+use Canducci\Thumbnail\Thumbnail;
+```
+__Code Example__
+```PHP
+$thumb = new Thumbnail('address_video_youtube');
+
+```
+
 ##Facade
 
 __Add namespace:__
@@ -80,11 +92,28 @@ __Add Namespace__
 use Canducci\Thumbnail\Contracts\ThumbnailContract;
 
 ```
+
 __Code Example__
+
 ```PHP
 public function index(ThumbnailContract $thumbnail)
 {
 
-      $thumb = $thumbnail->setUrl('address_video_youtube);
+      $thumb = $thumbnail->setUrl('address_video_youtube');
       
+```
+
+## Summary of How to Use
+
+__Code__
+
+```PHP 
+
+$thumb = ZipCode::setUrl('address_video_youtube'); //Facade
+
+$thumb = $zipcode->setUrl('address_video_youtube'); //Contracts
+
+$thumb = thumbnail('address_video_youtube'); // Helper
+
+$thumb = new Thumbnail('address_video_youtube'); //Simply instance
 ```
