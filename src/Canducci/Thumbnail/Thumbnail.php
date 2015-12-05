@@ -14,7 +14,7 @@ class Thumbnail extends ThumbnailContract
             $this->setUrl($url);
 
         }
-        
+
     }
 
     public function getUrl()
@@ -187,5 +187,7 @@ class Thumbnail extends ThumbnailContract
         }
 
         return $this->pictures;
+
     }
+
 }

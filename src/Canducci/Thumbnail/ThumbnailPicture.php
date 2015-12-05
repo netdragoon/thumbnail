@@ -5,9 +5,6 @@ use Exception;
 
 class ThumbnailPicture extends ThumbnailPictureContract
 {
-    protected $url;
-    protected $id;
-    protected $code;
 
     public function __construct($url,$id,$code)
     {
@@ -35,6 +32,7 @@ class ThumbnailPicture extends ThumbnailPictureContract
         return array('id' => $this->id, 'url' => $this->url, 'code' => $this->code);
 
     }
+
     public function toJson()
     {
 
@@ -69,4 +67,5 @@ class ThumbnailPicture extends ThumbnailPictureContract
         return sprintf('/%s', $this->getPath($path));
 
     }
+
 }
