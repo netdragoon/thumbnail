@@ -195,3 +195,78 @@ abstract public function getTagVideoEmbed($width = 560, $height = 315,
   $frameborder = 0, $suggestvideo = true, $controls = true, $showinfo = true, 
   $privacidade = false); //return tag frame
 ```
+
+
+###How to use:
+
+___Helper___
+```PHP
+Route::get('thumb', function()
+{
+	$thumb    = thumbnail('address_video_youtube');
+	$picture0 = $thumb->getPicture0();
+	$picture0->save('t/');
+	echo $picture0->getFileWeb('t/');
+});
+```
+
+___Contract - Injection___
+```PHP
+use Canducci\Thumbnail\Contracts\ThumbnailContract;
+Route::get('thumb1', function(ThumbnailContract $thumb)
+{	
+	$thumb->setUrl('address_video_youtube');
+	$picture0 = $thumb->getPicture0();
+	$picture0->save('t/');
+	echo $picture0->getFileWeb('t/');
+});
+```
+
+___Facade___
+```PHP
+use Canducci\Thumbnail\Facades\Thumbnail;
+Route::get('thumb2', function()
+{	
+	$thumb = Thumbnail::setUrl('address_video_youtube');
+	$picture0 = $thumb->getPicture0();
+	$picture0->save('t/');
+	echo $picture0->getFileWeb('t/');
+});
+```
+
+___Simply Instance___
+
+#####1 - Save one thumbnail
+
+```PHP
+use Canducci\Thumbnail\Thumbnail as Thumb;
+Route::get('thumb3', function()
+{	
+	$thumb = new Thumb('address_video_youtube');
+	$picture0 = $thumb->getPicture0();
+	$picture0->save('t/');
+	echo $picture0->getFileWeb('t/');
+});
+```
+
+#####2 - Save all thumbnail
+
+```PHP
+Route::get('thumb4', function()
+{	
+	$thumb = new Thumb('address_video_youtube');
+	$thumb->savePictures('t/');	
+	echo $thumb->getPicture0()->getFileWeb('t/');
+});
+```
+
+___222___
+```PHP
+Route::get('thumb5', function()
+{	
+	$thumb = new Thumb('address_video_youtube');
+	echo $thumb->getUrlVideoShare();
+	echo '<br>';	
+	echo $thumb->getTagVideoEmbed();
+});
+```
