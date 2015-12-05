@@ -2,6 +2,7 @@
 
 class ThumbnailUrlEncodedFmtStreamMap
 {
+
     protected $url;
     protected $quality;
     protected $itag;

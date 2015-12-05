@@ -203,47 +203,62 @@ abstract class ThumbnailContract
 
             parse_str($information, $info);
 
-            $obj->setAuthor($info['author']);
-            $obj->setTitle($info['title']);
-            $obj->setVideoId($info['video_id']);
-            $obj->setHostLanguage($info['host_language']);
-            $obj->setKeywords($info['keywords']);
-            $obj->setTimestamp((int)$info['timestamp']);
-            $obj->setLengthSeconds((int)$info['length_seconds']);
-            $obj->setViewCount((int)$info['view_count']);
-            $obj->setThumbnail($this->getPictures());
+            $obj->setAuthor($info['author'])
+                ->setTitle($info['title'])
+                ->setVideoId($info['video_id'])
+                ->setHostLanguage($info['host_language'])
+                ->setKeywords($info['keywords'])
+                ->setTimestamp((int)$info['timestamp'])
+                ->setLengthSeconds((int)$info['length_seconds'])
+                ->setViewCount((int)$info['view_count'])
+                ->setThumbnail($this->getPictures());
+
             $fmts = array();
+
             foreach($this->infoVideo($info, 'adaptive_fmts') as $value)
             {
+
                 $fmtsObject = new ThumbnailAdaptiveFmts();
-                $fmtsObject->setUrl($value['url']);
-                $fmtsObject->setBitrate($value['bitrate']);
-                $fmtsObject->setClen($value['clen']);
-                $fmtsObject->setFps(isset($value['fps']) ? $value['fps']: 0);
-                $fmtsObject->setIndex($value['index']);
-                $fmtsObject->setInit($value['init']);
-                $fmtsObject->setItag($value['itag']);
-                $fmtsObject->setLmt($value['lmt']);
-                $fmtsObject->setProjectionType($value['projection_type']);
-                $fmtsObject->setQualityLabel(isset($value['quality_label']) ? $value['quality_label']:0);
-                $fmtsObject->setSize(isset($value['size']) ? $value['size']:0);
-                $fmtsObject->setType($value['type']);
+
+                $fmtsObject->setUrl($value['url'])
+                    ->setBitrate($value['bitrate'])
+                    ->setClen($value['clen'])
+                    ->setFps(isset($value['fps']) ? $value['fps']: 0)
+                    ->setIndex($value['index'])
+                    ->setInit($value['init'])
+                    ->setItag($value['itag'])
+                    ->setLmt($value['lmt'])
+                    ->setProjectionType($value['projection_type'])
+                    ->setQualityLabel(isset($value['quality_label']) ? $value['quality_label']:0)
+                    ->setSize(isset($value['size']) ? $value['size']:0)
+                    ->setType($value['type']);
+
                 $fmts[] = $fmtsObject;
             }
+
             $obj->setAdaptiveFmts($fmts);
+
             $map = array();
+            
             foreach($this->infoVideo($info, 'url_encoded_fmt_stream_map') as $value)
             {
+
                 $mapObject = new ThumbnailUrlEncodedFmtStreamMap();
-                $mapObject->setType($value['type']);
-                $mapObject->setUrl($value['url']);
-                $mapObject->setItag($value['itag']);
-                $mapObject->setFallbackHost($value['fallback_host']);
-                $mapObject->setQuality($value['quality']);
+
+                $mapObject->setType($value['type'])
+                    ->setUrl($value['url'])
+                    ->setItag($value['itag'])
+                    ->setFallbackHost($value['fallback_host'])
+                    ->setQuality($value['quality']);
+
                 $map[] = $mapObject;
+
             }
+
             $obj->setUrlEncodedFmtStreamMap($map);
+
             $this->informationVideo = $obj;
+
         }
 
         return $this->informationVideo;
