@@ -132,11 +132,14 @@ abstract class ThumbnailContract
         }
 
         return $thumbPictureInstance;
+
     }
 
     protected function renderThumbnailVideoShare()
     {
+
         return sprintf(ThumbnailUrl::URLShare, $this->code);
+
     }
 
     protected  function renderThumbnailTagVideoEmbed($width = 560, $height = 315, $frameborder = 0, $suggestvideo = true, $controls = true, $showinfo = true, $privacidade = false)
@@ -164,8 +167,11 @@ abstract class ThumbnailContract
 
     protected function renderCode()
     {
+
         $parseUrl = parse_url($this->url);
+
         $response = array();
+
         preg_match('/v=[\w+]*/', $parseUrl['query'], $response);
 
         if (count($response) == 1)
@@ -176,5 +182,6 @@ abstract class ThumbnailContract
         }
 
         throw new Exception("Url invalid", 0);
+
     }
 }

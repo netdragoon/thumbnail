@@ -165,17 +165,21 @@ class Thumbnail extends ThumbnailContract
     {
         if (is_null($this->pictures))
         {
-            $this->pictures = array(
-                $this->getPictureDefault(),
-                $this->getPicture0(),
-                $this->getPicture1(),
-                $this->getPicture2(),
-                $this->getPicture3(),
-                $this->getPictureStandard(),
-                $this->getPictureHighQuality(),
-                $this->getPictureHighQuality(),
-                $this->getPictureMaximumResolution()
+
+            $this->pictures = new ThumbnailPictureCollection(
+                array(
+                    $this->getPictureDefault(),
+                    $this->getPicture0(),
+                    $this->getPicture1(),
+                    $this->getPicture2(),
+                    $this->getPicture3(),
+                    $this->getPictureStandard(),
+                    $this->getPictureHighQuality(),
+                    $this->getPictureHighQuality(),
+                    $this->getPictureMaximumResolution()
+                )
             );
+
         }
 
         return $this->pictures;
