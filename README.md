@@ -117,3 +117,23 @@ $thumb = thumbnail('address_video_youtube'); // Helper
 
 $thumb = new Thumbnail('address_video_youtube'); //Simply instance
 ```
+
+
+###To make optimization of the thumbnails in two ways:
+
+```PHP
+
+$thumb = thumbnail('address_video_youtube');
+
+$thumb->savePictures('thumbnail/');
+
+```
+###Or individually each thumbnail in this way:
+
+```PHP
+
+$thumb = thumbnail('address_video_youtube');
+
+$thumb->getPicture0()->save('thumbs/');
+
+```
