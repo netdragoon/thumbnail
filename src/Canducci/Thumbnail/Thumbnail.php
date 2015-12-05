@@ -7,10 +7,14 @@ class Thumbnail extends ThumbnailContract
 
     public function __construct($url = null)
     {
+
         if (!is_null($url))
         {
+
             $this->setUrl($url);
+
         }
+        
     }
 
     public function getUrl()
