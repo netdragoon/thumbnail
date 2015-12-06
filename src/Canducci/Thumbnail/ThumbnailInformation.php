@@ -1,9 +1,10 @@
 <?php namespace Canducci\Thumbnail;
 
-use Canducci\Thumbnail\Contracts\ITo;
+use Canducci\Thumbnail\Contracts\IThumbnailInformation;
 
-class ThumbnailInformation implements ITo
+class ThumbnailInformation implements IThumbnailInformation
 {
+
     private $author;
     private $title;
     private $video_id;
@@ -12,13 +13,13 @@ class ThumbnailInformation implements ITo
     private $timestamp;
     private $length_seconds;
     private $view_count;
-    //collection
     private $thumbnail;
     private $adaptive_fmts;
     private $url_encoded_fmt_stream_map;
 
-    function __construct($author = null, $title = null, $video_id = null, $host_language = null, $keywords = null, $timestamp = null, $length_seconds = null, $view_count = null, $thumbnail = null, $adaptive_fmts = null, $url_encoded_fmt_stream_map = null)
+    public function __construct($author = null, $title = null, $video_id = null, $host_language = null, $keywords = null, $timestamp = null, $length_seconds = null, $view_count = null, $thumbnail = null, $adaptive_fmts = null, $url_encoded_fmt_stream_map = null)
     {
+
         $this->author = $author;
         $this->title = $title;
         $this->video_id = $video_id;
@@ -30,6 +31,7 @@ class ThumbnailInformation implements ITo
         $this->thumbnail = $thumbnail;
         $this->adaptive_fmts = $adaptive_fmts;
         $this->url_encoded_fmt_stream_map = $url_encoded_fmt_stream_map;
+
     }
 
 
@@ -44,6 +46,7 @@ class ThumbnailInformation implements ITo
     {
 
         $this->author = $author;
+        return $this;
 
     }
 
@@ -58,6 +61,7 @@ class ThumbnailInformation implements ITo
     {
 
         $this->title = $title;
+        return $this;
 
     }
 
@@ -72,6 +76,7 @@ class ThumbnailInformation implements ITo
     {
 
         $this->video_id = $video_id;
+        return $this;
 
     }
 
@@ -86,6 +91,7 @@ class ThumbnailInformation implements ITo
     {
 
         $this->host_language = $host_language;
+        return $this;
 
     }
 
@@ -100,6 +106,7 @@ class ThumbnailInformation implements ITo
     {
 
         $this->keywords = $keywords;
+        return $this;
 
     }
 
@@ -114,6 +121,7 @@ class ThumbnailInformation implements ITo
     {
 
         $this->timestamp = $timestamp;
+        return $this;
 
     }
 
@@ -128,6 +136,7 @@ class ThumbnailInformation implements ITo
     {
 
         $this->length_seconds = $length_seconds;
+        return $this;
 
     }
 
@@ -142,6 +151,7 @@ class ThumbnailInformation implements ITo
     {
 
         $this->view_count = $view_count;
+        return $this;
 
     }
 
@@ -156,6 +166,7 @@ class ThumbnailInformation implements ITo
     {
 
         $this->thumbnail = $thumbnail;
+        return $this;
 
     }
 
@@ -170,6 +181,7 @@ class ThumbnailInformation implements ITo
     {
 
         $this->adaptive_fmts = $adaptive_fmts;
+        return $this;
 
     }
 
@@ -184,6 +196,7 @@ class ThumbnailInformation implements ITo
     {
 
         $this->url_encoded_fmt_stream_map = $url_encoded_fmt_stream_map;
+        return $this;
 
     }
 
