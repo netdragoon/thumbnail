@@ -308,7 +308,7 @@ return $thumb->getInformationVideo()->toArray();
 return $thumb->getInformationVideo()->toJson();
 ```
 
-The ` getInformationVideo ()` ` to return to class ThumbnailInformation` that has the following methods:
+The ` getInformationVideo ()` to return to `class ThumbnailInformation` that has the following methods:
 ```PHP
 public function getAuthor();
 public function setAuthor($author);
@@ -332,6 +332,8 @@ public function getAdaptiveFmts();
 public function setAdaptiveFmts(IThumbnailAdaptiveFmtsCollection $adaptive_fmts);
 public function getUrlEncodedFmtStreamMap();
 public function setUrlEncodedFmtStreamMap(IThumbnailUrlEncodedFmtStreamMapCollection $url_encoded_fmt_stream_map);
+public function toArray();
+public function toJson();
 ```
 
 ___The return of this method is (JSON):___
