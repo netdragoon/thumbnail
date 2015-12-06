@@ -158,26 +158,26 @@ $pathWeb = $thumb->getPicture0()->getUrl();
 ###All methods of thumbnails to picture:
 
 ```PHP
-abstract public function getPictureDefault();
-abstract public function getPicture0();
-abstract public function getPicture1();
-abstract public function getPicture2();
-abstract public function getPicture3();
-abstract public function getPictureStandard();
-abstract public function getPictureMediumQuality();
-abstract public function getPictureHighQuality();
-abstract public function getPictureMaximumResolution();
+public function getPictureDefault();
+public function getPicture0();
+public function getPicture1();
+public function getPicture2();
+public function getPicture3();
+public function getPictureStandard();
+public function getPictureMediumQuality();
+public function getPictureHighQuality();
+public function getPictureMaximumResolution();
 
 ```
 
 __These methods are represented by class__ `ThumbnailPicture`:
 
 ```PHP
-abstract public function getUrl();
-abstract public function save($path);
-abstract public function getFileWeb($path);
-abstract public function toArray();
-abstract public function toJson();
+public function getUrl();
+public function save($path);
+public function getFileWeb($path);
+public function toArray();
+public function toJson();
 ```
 
 __All methods of__ `class Thumbnail`__:__
@@ -209,10 +209,10 @@ public function getPictures();
 
 ```PHP
 //share
-abstract public function getUrlVideoShare(); // return link share
+public function getUrlVideoShare(); // return link share
 
 //embed
-abstract public function getTagVideoEmbed($width = 560, $height = 315,  
+public function getTagVideoEmbed($width = 560, $height = 315,  
   $frameborder = 0, $suggestvideo = true, $controls = true, $showinfo = true, 
   $privacidade = false); //return tag frame
 ```
