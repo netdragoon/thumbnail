@@ -22,9 +22,9 @@ interface IThumbnailInformation extends ITo
     public function getThumbnail();
     public function setThumbnail($thumbnail);
     public function getAdaptiveFmts();
-    public function setAdaptiveFmts($adaptive_fmts);
+    public function setAdaptiveFmts(IThumbnailAdaptiveFmtsCollection $adaptive_fmts);
     public function getUrlEncodedFmtStreamMap();
-    public function setUrlEncodedFmtStreamMap($url_encoded_fmt_stream_map);
+    public function setUrlEncodedFmtStreamMap(IThumbnailUrlEncodedFmtStreamMapCollection $url_encoded_fmt_stream_map);
 
 
 }

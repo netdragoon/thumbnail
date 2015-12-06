@@ -1,6 +1,8 @@
 <?php namespace Canducci\Thumbnail;
 
+use Canducci\Thumbnail\Contracts\IThumbnailAdaptiveFmtsCollection;
 use Canducci\Thumbnail\Contracts\IThumbnailInformation;
+use Canducci\Thumbnail\Contracts\IThumbnailUrlEncodedFmtStreamMapCollection;
 
 class ThumbnailInformation implements IThumbnailInformation
 {
@@ -177,7 +179,7 @@ class ThumbnailInformation implements IThumbnailInformation
 
     }
 
-    public function setAdaptiveFmts($adaptive_fmts)
+    public function setAdaptiveFmts(IThumbnailAdaptiveFmtsCollection $adaptive_fmts)
     {
 
         $this->adaptive_fmts = $adaptive_fmts;
@@ -192,7 +194,7 @@ class ThumbnailInformation implements IThumbnailInformation
 
     }
 
-    public function setUrlEncodedFmtStreamMap($url_encoded_fmt_stream_map)
+    public function setUrlEncodedFmtStreamMap(IThumbnailUrlEncodedFmtStreamMapCollection $url_encoded_fmt_stream_map)
     {
 
         $this->url_encoded_fmt_stream_map = $url_encoded_fmt_stream_map;
