@@ -155,7 +155,7 @@ $pathWeb = $thumb->getPicture0()->getUrl();
 //result 'http://i1.ytimg.com/vi/xtzxYWz0D_9/0.jpg';
 ```
 
-###All methods of thumbnails:
+###All methods of thumbnails to picture:
 
 ```PHP
 abstract public function getPictureDefault();
@@ -178,6 +178,31 @@ abstract public function save($path);
 abstract public function getFileWeb($path);
 abstract public function toArray();
 abstract public function toJson();
+```
+
+__All methods of__ `class Thumbnail`__:__
+
+```PHP
+public function getUrl();
+public function getCode();
+public function setUrl($url);
+public function getPictureDefault();
+public function getPicture0();
+public function getPicture1();
+public function getPicture2();
+public function getPicture3();
+public function getPictureStandard();
+public function getPictureMediumQuality();
+public function getPictureHighQuality();
+public function getPictureMaximumResolution();
+public function getUrlVideoShare();
+public function getTagVideoEmbed($width = 560, $height = 315, 
+	$frameborder = 0, $suggestvideo = true, $controls = true, 
+	$showinfo = true, $privacidade = false);
+public function getInformationVideo();
+public function savePictures($path);
+public function getPictures();
+
 ```
 
 ###In addition to the part of the thumbnail you have to share part and embed video with these two methods:
