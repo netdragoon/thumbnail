@@ -274,13 +274,11 @@ Route::get('thumb5', function()
 __The method__ `getInformationVideo()` __has a detailed option information of the informed youtube link:__
 
 ```PHP
-
 $thumb = thumbnail('address_video_youtube');
 return $thumb->getInformationVideo();
-
 ```
 
-The return is:
+___The return of this method is:___
 
 ```JSON
 {
