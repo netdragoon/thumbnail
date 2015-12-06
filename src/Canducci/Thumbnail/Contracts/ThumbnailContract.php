@@ -1,11 +1,13 @@
 <?php namespace Canducci\Thumbnail\Contracts;
 
 use Canducci\Thumbnail\ThumbnailAdaptiveFmts;
+use Canducci\Thumbnail\ThumbnailAdaptiveFmtsCollection;
 use Canducci\Thumbnail\ThumbnailClient;
 use Canducci\Thumbnail\ThumbnailInformation;
 use Canducci\Thumbnail\ThumbnailPicture;
 use Canducci\Thumbnail\ThumbnailUrl;
 use Canducci\Thumbnail\ThumbnailUrlEncodedFmtStreamMap;
+use Canducci\Thumbnail\ThumbnailUrlEncodedFmtStreamMapCollection;
 use Exception;
 
 abstract class ThumbnailContract implements ITo
@@ -233,7 +235,7 @@ abstract class ThumbnailContract implements ITo
                 $fmts[] = $fmtsObject;
             }
 
-            $obj->setAdaptiveFmts($fmts);
+            $obj->setAdaptiveFmts(new ThumbnailAdaptiveFmtsCollection($fmts));
 
             $map = array();
 
@@ -252,7 +254,7 @@ abstract class ThumbnailContract implements ITo
 
             }
 
-            $obj->setUrlEncodedFmtStreamMap($map);
+            $obj->setUrlEncodedFmtStreamMap(new ThumbnailUrlEncodedFmtStreamMapCollection($map));
 
             $this->informationVideo = $obj;
 
