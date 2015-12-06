@@ -202,6 +202,9 @@ public function getTagVideoEmbed($width = 560, $height = 315,
 public function getInformationVideo();
 public function savePictures($path);
 public function getPictures();
+public function toArray();
+public function toJson();
+
 
 ```
 
@@ -300,10 +303,38 @@ __The method__ `getInformationVideo()` __has a detailed option information of th
 
 ```PHP
 $thumb = thumbnail('address_video_youtube');
-return $thumb->getInformationVideo();
+return $thumb->getInformationVideo()->toArray(); 
+//or
+return $thumb->getInformationVideo()->toJson();
 ```
 
-___The return of this method is:___
+The ` getInformationVideo ()` ` to return to class ThumbnailInformation` that has the following methods:
+```PHP
+public function getAuthor();
+public function setAuthor($author);
+public function getTitle();
+public function setTitle($title);
+public function getVideoId();
+public function setVideoId($video_id);
+public function getHostLanguage();
+public function setHostLanguage($host_language);
+public function getKeywords();
+public function setKeywords($keywords);
+public function getTimestamp();
+public function setTimestamp($timestamp);
+public function getLengthSeconds();
+public function setLengthSeconds($length_seconds);
+public function getViewCount();
+public function setViewCount($view_count);
+public function getThumbnail();
+public function setThumbnail($thumbnail);
+public function getAdaptiveFmts();
+public function setAdaptiveFmts(IThumbnailAdaptiveFmtsCollection $adaptive_fmts);
+public function getUrlEncodedFmtStreamMap();
+public function setUrlEncodedFmtStreamMap(IThumbnailUrlEncodedFmtStreamMapCollection $url_encoded_fmt_stream_map);
+```
+
+___The return of this method is (JSON):___
 
 ```JSON
 {
