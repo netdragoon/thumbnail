@@ -1,6 +1,6 @@
 <?php namespace Canducci\Thumbnail\Contracts;
 
-abstract class ThumbnailPictureContract
+abstract class ThumbnailPictureContract implements ITo
 {
 
     protected $url;
@@ -10,9 +10,6 @@ abstract class ThumbnailPictureContract
     abstract public function getUrl();
     abstract public function save($path);
     abstract public function getFileWeb($path);
-
-    abstract public function toArray();
-    abstract public function toJson();
 
     protected function getPath($path)
     {

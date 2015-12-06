@@ -167,6 +167,7 @@ class Thumbnail extends ThumbnailContract
 
     public function getPictures()
     {
+
         if (is_null($this->pictures))
         {
 

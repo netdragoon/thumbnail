@@ -64,7 +64,9 @@ class ThumbnailPictureCollection implements IThumbnailPictureCollection
 
         foreach($this->items as $itt)
         {
+
             $arr[] = $itt->toArray();
+
         }
 
         return $arr;

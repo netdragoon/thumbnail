@@ -8,7 +8,7 @@ use Canducci\Thumbnail\ThumbnailUrl;
 use Canducci\Thumbnail\ThumbnailUrlEncodedFmtStreamMap;
 use Exception;
 
-abstract class ThumbnailContract
+abstract class ThumbnailContract implements ITo
 {
 
     protected $url;
@@ -41,9 +41,6 @@ abstract class ThumbnailContract
     abstract public function getUrlVideoShare();
     abstract public function getTagVideoEmbed($width = 560, $height = 315, $frameborder = 0, $suggestvideo = true, $controls = true, $showinfo = true, $privacidade = false);
     abstract public function getInformationVideo();
-
-    abstract public function toArray();
-    abstract public function toJson();
 
     abstract public function savePictures($path);
     abstract public function getPictures();
@@ -155,13 +152,13 @@ abstract class ThumbnailContract
 
         $conf = ($suggestvideo == false) ? "rel=0" : "";
 
-        if ($conf !=="" && $controls == false) $conf .= "&amp;&";
+        if ($conf !== "" && $controls == false) $conf .= "&";
         $conf .= ($controls == false) ? "controls=0" : "";
 
-        if ($conf !=="" && $showinfo == false) $conf .= "&amp;&";
+        if ($conf !== "" && $showinfo == false) $conf .= "&";
         $conf .= ($showinfo == false) ? "showinfo=0" : "";
 
-        if ($conf !=="") $conf = "?" . $conf;
+        if ($conf !== "") $conf = "?" . $conf;
 
         $embed = sprintf('<iframe width="%s" height="%s" ', $width, $height);
         $embed .= sprintf('src="%s%s" ', sprintf($url, $this->code), $conf);
@@ -239,7 +236,7 @@ abstract class ThumbnailContract
             $obj->setAdaptiveFmts($fmts);
 
             $map = array();
-            
+
             foreach($this->infoVideo($info, 'url_encoded_fmt_stream_map') as $value)
             {
 
@@ -286,4 +283,5 @@ abstract class ThumbnailContract
         return $ret;
 
     }
+
 }
