@@ -15,7 +15,7 @@
 In the `require` key of `composer.json` file add the following
 
 ```PHP
-"canducci/thumbnail": "dev-master"
+"canducci/thumbnail": "0.1.*"
 
 ```
 
