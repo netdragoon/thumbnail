@@ -46,8 +46,6 @@ At the end of `config/app.php` add `'Thumbnail' => 'Canducci\Thumbnail\Facades\T
 ```
 
 --
-##How to Use
-
 ##Simply Instance
 __Add namespace:__
 
