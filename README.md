@@ -103,9 +103,9 @@ __Code__
 
 ```PHP 
 
-$thumb = ZipCode::setUrl('address_video_youtube'); //Facade
+$thumb = Thumbnail::setUrl('address_video_youtube'); //Facade
 
-$thumb = $zipcode->setUrl('address_video_youtube'); //Contracts
+$thumb = $Thumbnail->setUrl('address_video_youtube'); //Contracts
 
 $thumb = thumbnail('address_video_youtube'); // Helper
 
