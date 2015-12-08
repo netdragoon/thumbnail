@@ -177,7 +177,7 @@ abstract class ThumbnailContract implements ITo
 
         $response = array();
 
-        preg_match('/v=[\w+]*/', $parseUrl['query'], $response);
+        preg_match('/v=[\w-_+]*/', $parseUrl['query'], $response);
 
         if (count($response) == 1)
         {
